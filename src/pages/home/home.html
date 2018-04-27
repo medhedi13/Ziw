@@ -1,0 +1,48 @@
+
+<form (submit)="addPost()">
+
+<ion-item>
+   <ion-label floating>Post</ion-label>
+   <ion-input type="text" [(ngModel)]="comment" placeholder="" name="content"></ion-input>
+
+ </ion-item>
+
+ <button style="float: right" ion-button type="submit">Add post</button>
+</form >
+<ion-card  *ngFor="let item of posts">
+
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="https://image.ibb.co/dQ8XYc/logo_ataoo1.png">
+    </ion-avatar>
+    <h2>ATAOO</h2>
+    <p>{{item.created}}</p>
+  </ion-item>
+
+  <img src="https://image.ibb.co/e1Hbtc/Capture.jpg">
+
+  <ion-card-content>
+    <p>{{item.content}}</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{item.likes.length}} Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>0 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        1h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
