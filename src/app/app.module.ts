@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { IonicStorageModule } from '@ionic/storage';
+import { ProfilePage } from '../pages/profile/profile';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     TabsPage,
     LoginPage,
-   RegisterPage
+    RegisterPage,
+    ProfilePage
 
   ],
   imports: [
@@ -39,7 +41,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

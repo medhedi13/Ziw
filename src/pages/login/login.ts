@@ -4,7 +4,8 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 import { TabsPage } from '../tabs/tabs';
 import { RegisterPage } from '../register/register';
 import { Storage } from '@ionic/storage';
-
+import { HomePage} from "../home/home";
+import { Events } from 'ionic-angular';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -15,7 +16,7 @@ export class LoginPage {
   loginData = { email:'', password:'' };
   data: any;
 
-  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController, private storage: Storage) {}
+  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController, private storage: Storage,public events: Events) {}
 
   doLogin() {
   this.showLoader();
@@ -30,7 +31,8 @@ export class LoginPage {
       this.storage.get('token').then((val) => {
         console.log('Your token is', val);
       });
-         this.navCtrl.setRoot(TabsPage);
+         this.navCtrl.setRoot(HomePage);
+       this.events.publish('userD5al', "x", Date.now());
      } else {
        this.presentToast(this.data.message);
      }
@@ -40,7 +42,7 @@ export class LoginPage {
     });
 
   }
-  
+
   register() {
     this.navCtrl.push(RegisterPage);
   }
