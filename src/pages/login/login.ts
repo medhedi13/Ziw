@@ -25,7 +25,9 @@ export class LoginPage {
     this.data = result;
      if (this.data.success) {
        // set a key/value
+
       this.storage.set('token', this.data.token);
+      this.storage.set('userid', this.data.data._id);
 
       // Or to get a key/value pair
       this.storage.get('token').then((val) => {
@@ -47,7 +49,7 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
 
-  showLoader(){
+  public showLoader(){
     this.loading = this.loadingCtrl.create({
         content: 'Authenticating...'
     });

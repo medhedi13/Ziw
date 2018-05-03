@@ -96,3 +96,12 @@ body{
 ion-nav, ion-tab, ion-tabs{
   overflow: auto!important;
 }
+.avatarClass{
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+  margin:0px auto;
+}

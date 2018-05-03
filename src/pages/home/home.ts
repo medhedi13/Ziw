@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
 import {Http, Headers} from '@angular/http';
 
 @Component({
@@ -12,8 +13,10 @@ export class HomePage {
   posts: Array<object>;
   comment: String;
 
-  constructor(public navCtrl: NavController, private http: Http) {
+  constructor(public navCtrl: NavController, private http: Http, private storage:Storage) {
     this.getPost();
+    console.log(this.storage.get("token"));
+    console.log(this.storage.get("userid"));
     this.comment = "";
   }
 

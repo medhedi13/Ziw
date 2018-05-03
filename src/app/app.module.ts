@@ -14,7 +14,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ProfilePage } from '../pages/profile/profile';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { SidebarComponent} from '../components/sidebar/sidebar'
 @NgModule({
   declarations: [
     MyApp,
@@ -24,8 +25,8 @@ import { ProfilePage } from '../pages/profile/profile';
     TabsPage,
     LoginPage,
     RegisterPage,
-    ProfilePage
-
+    ProfilePage,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,9 @@ import { ProfilePage } from '../pages/profile/profile';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    IonicStorageModule
-  ]
+    IonicStorageModule,
+
+
+]
 })
 export class AppModule {}
