@@ -14,8 +14,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ProfilePage } from '../pages/profile/profile';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, } from '@angular/core';
 import { SidebarComponent} from '../components/sidebar/sidebar'
+import {Chat} from "../pages/chat/chat";
+import { EmojiProvider } from '../providers/emoji/emoji';
+import { ChatService } from '../providers/chat-service/chat-service';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,13 +32,16 @@ import { SidebarComponent} from '../components/sidebar/sidebar'
     LoginPage,
     RegisterPage,
     ProfilePage,
-    SidebarComponent
+    SidebarComponent,
+    Chat,
+
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +52,8 @@ import { SidebarComponent} from '../components/sidebar/sidebar'
     TabsPage,
     LoginPage,
     RegisterPage,
-    ProfilePage
+    ProfilePage,
+    Chat
   ],
   providers: [
     StatusBar,
@@ -51,6 +61,12 @@ import { SidebarComponent} from '../components/sidebar/sidebar'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     IonicStorageModule,
+    EmojiProvider,
+    EmojiProvider,
+    ChatService,
+    HttpClient,
+    HttpClientModule
+
 
 
 ]

@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input,ViewChild} from '@angular/core';
 import {NavController} from "ionic-angular";
 import {BirdsPage} from "../../pages/birds/birds";
+import {TabsPage} from "../../pages/tabs/tabs";
+
 
 /**
  * Generated class for the SidebarComponent component.
@@ -23,12 +25,12 @@ export class SidebarComponent {
     this.text = 'Hello World';
   }
 
-  emchy() {
-    this.navCtrl.push(BirdsPage);
+  Doemchy() {
+    this.navCtrl.push(BirdsPage)
   }
 
   ngAfterViewInit() {
-    this.navCtrl = new nani();
+
 
   }
 }
