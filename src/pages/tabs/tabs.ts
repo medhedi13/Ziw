@@ -15,7 +15,6 @@ export class TabsPage {
   tab2Root = LoginPage;
   tab3Root = RegisterPage;
   tab4Root= ProfilePage;
-
   @ViewChild(Nav) nav:Nav;
     constructor(public events: Events) {
     events.subscribe('userD5al', (user, time) => {

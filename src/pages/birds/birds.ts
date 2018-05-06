@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {Headers, Http} from "@angular/http";
 import {Storage} from "@ionic/storage";
 
@@ -10,24 +10,24 @@ import {Storage} from "@ionic/storage";
   templateUrl: 'birds.html',
 })
 export class BirdsPage {
-  birds = {};
+  birds = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private storage: Storage) {
+  constructor( private http: Http, private storage: Storage) {
     this.getBirds();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BirdsPage');
-  };
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad BirdsPage');
+  // };
 
 
   getBirds() {
     let self = this;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.storage.get("birdsID").then(function (birdsID) {
-      self.http.get('http://localhost:8081/api/users/' + birdsID).subscribe(res => {
+    this.storage.get("userid").then(function (userid) {
+      self.http.get('http://localhost:8081/api/birds/user/' + userid).subscribe(res => {
         let data = res.json();
         self.birds = data.data;
         console.log(res.json());
@@ -35,5 +35,8 @@ export class BirdsPage {
         console.log(err);
       });
     });
+  }
+  addBird(){
+
   }
 }

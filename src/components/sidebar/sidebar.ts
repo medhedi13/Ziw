@@ -18,7 +18,7 @@ export class SidebarComponent {
   text: string;
   content: any;
 
-  constructor() {
+  constructor(public navCtrl:NavController) {
     console.log('Hello SidebarComponent Component');
     this.text = 'Hello World';
   }
@@ -26,13 +26,4 @@ export class SidebarComponent {
   emchy() {
     this.navCtrl.push(BirdsPage);
   }
-
-  ngAfterViewInit() {
-    this.navCtrl = new nani();
-
-  }
-}
-export class nani<T extends new () => NavController> {
-
-
 }

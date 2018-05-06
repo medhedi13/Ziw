@@ -1,4 +1,5 @@
-<ion-tabs [selectedIndex]="2">
+<sidebar [idSide]="mycontent"></sidebar>
+<ion-tabs #mycontent [selectedIndex]="2">
   <ion-tab  [show]="!menuLogin" [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab  [show]="!menuLogin" [root]="tab4Root" tabTitle="Profile" tabIcon="ios-person"></ion-tab>
   <ion-tab  [show]="menuLogin" [root]="tab2Root" tabTitle="Login" tabIcon="ios-key"></ion-tab>
