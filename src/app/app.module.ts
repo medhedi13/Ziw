@@ -54,11 +54,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         LoginPage,
         RegisterPage,
         ProfilePage,
-        <<<<<<< HEAD
-            BirdsPage
-        === === =
-            Chat
-            >>> >>> > 1fdc23fed791518adb4398e5557301504ef814d1
+        BirdsPage,
+        Chat
     ],
     providers: [
         StatusBar,

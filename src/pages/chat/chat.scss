@@ -55,21 +55,23 @@ page-chat {
         }
 
         .msg-content {
+          background: #fff;
+          margin-left: 50px;
+          color:#000;
           position: relative;
           margin-top: 5px;
           border-radius: 5px;
           padding: 8px;
           border: 1px solid #ddd;
-          color: #fff;
           width: auto;
           max-width: 80%;
           span.triangle {
+            display: none;
             background-color: #fff;
             border-radius: 2px;
             height: 8px;
             width: 8px;
             top: 12px;
-            display: block;
             border-style: solid;
             border-color: #ddd;
             border-width: 1px;

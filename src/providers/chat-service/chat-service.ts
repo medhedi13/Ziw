@@ -46,19 +46,30 @@ export class ChatService {
   }
 
   getMsgList(): Observable<ChatMessage[]> {
-    const msgListUrl = './assets/mock/msg-list.json';
+      const msgListUrl='http://localhost:8081/api/messages/5ab81fc29a3a6d17a8f257ee/5ab94d1571ce2e1cfccec79d';
+    // const msgListUrl = './assets/mock/msg-list.json';
     return this.http.get<any>(msgListUrl)
       .pipe(map(response => response.array));
   }
 
   sendMsg(msg: ChatMessage) {
+      this.http.post('http://localhost:8081/api/messages/',{
+          content: msg.message,
+          seen:false,
+          sender:'5ab81fc29a3a6d17a8f257ee' ,
+          recipient: '5ab94d1571ce2e1cfccec79d'
+      }).subscribe(res => {
+          console.log(res);
+      }, (err) => {
+          console.log(err);
+      });
     return new Promise(resolve => setTimeout(() => resolve(msg), Math.random() * 1000))
       .then(() => this.mockNewMsg(msg));
   }
 
   getUserInfo(): Promise<UserInfo> {
     const userInfo: UserInfo = {
-      id: '140000198202211138',
+      id: '5ab81fc29a3a6d17a8f257ee',
       name: 'Luff',
       avatar: './assets/user.jpg'
     };

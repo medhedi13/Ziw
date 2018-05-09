@@ -3,6 +3,7 @@ import { IonicPage, NavParams } from 'ionic-angular';
 import { Events, Content } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat-service/chat-service";
 
+import { HttpClient } from "@angular/common/http";
 @IonicPage()
 @Component({
   selector: 'page-chat',
@@ -123,8 +124,11 @@ export class Chat {
       toUserId = this.toUser.id;
     // Verify user relationships
     if (msg.userId === userId && msg.toUserId === toUserId) {
+
+        // console.log(msg);
       this.msgList.push(msg);
     } else if (msg.toUserId === userId && msg.userId === toUserId) {
+
       this.msgList.push(msg);
     }
     this.scrollToBottom();

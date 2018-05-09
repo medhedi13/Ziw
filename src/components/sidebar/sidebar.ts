@@ -15,7 +15,6 @@ import {TabsPage} from "../../pages/tabs/tabs";
   templateUrl: 'sidebar.html'
 })
 export class SidebarComponent {
-  navCtrl: any;
   @Input("idSide") testing;
   text: string;
   content: any;
