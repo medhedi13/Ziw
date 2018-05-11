@@ -1,3 +1,33 @@
 page-birds {
 
 }
+
+ion-card {
+  position: relative;
+  //text-align: center;
+  img{
+    filter: blur(4px);
+  }
+}
+.card-background-page {
+
+.details{
+  position: absolute;
+  top:52%;
+  width: 100%;
+  font-size: 1.0em;
+  left: 30px;
+  color:#fff;
+}
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    left: 30px;
+  }
+
+
+}

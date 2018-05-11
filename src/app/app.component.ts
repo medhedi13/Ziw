@@ -5,12 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {Chat} from "../pages/chat/chat";
 import {CagesPage} from "../pages/cages/cages";
+import {TabsPage} from "../pages/tabs/tabs";
+import {BirdsPage} from "../pages/birds/birds";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = CagesPage;
+  rootPage:any = BirdsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

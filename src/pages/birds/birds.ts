@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import {Headers, Http} from "@angular/http";
+import { HttpClient} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
 
 
@@ -13,7 +13,7 @@ export class BirdsPage {
   birds = [];
 
 
-  constructor( private http: Http, private storage: Storage) {
+  constructor( private http: HttpClient, private storage: Storage) {
     this.getBirds();
   }
 
@@ -24,13 +24,11 @@ export class BirdsPage {
 
   getBirds() {
     let self = this;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
     this.storage.get("userid").then(function (userid) {
       self.http.get('http://localhost:8081/api/birds/user/' + userid).subscribe(res => {
-        let data = res.json();
+        let data = res;
         self.birds = data.data;
-        console.log(res.json());
+        console.log(res);
       }, (err) => {
         console.log(err);
       });
