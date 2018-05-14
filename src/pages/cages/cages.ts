@@ -12,6 +12,11 @@ import {async} from "rxjs/scheduler/async";
  * Ionic pages and navigation.
  */
 
+
+export class cageType{
+    owner:string;
+    number:number;
+}
 @IonicPage()
 @Component({
     selector: 'page-cages',
@@ -19,7 +24,7 @@ import {async} from "rxjs/scheduler/async";
 })
 export class CagesPage {
     couples = [];
-    cage = {};
+    cage :cageType;
     cages = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private storage: Storage) {
@@ -30,11 +35,15 @@ export class CagesPage {
     }
 
     getCouples() {
+
+        class resultData {
+            data:Array<any>
+        }
         let self = this;
         new Promise(function (resolve) {
 
             self.storage.get("userid").then(function (userid) {
-                self.http.get('http://localhost:8081/api/couples/user/' + userid).subscribe(res => {
+                self.http.get('http://localhost:8081/api/couples/user/' + userid).subscribe((res:resultData) => {
                     let data = res;
                     self.couples = data.data;
                     console.log(data);
@@ -48,8 +57,12 @@ export class CagesPage {
 
     getCages() {
         let self = this;
+
+        class resultData {
+            data:Array<any>
+        }
         this.storage.get("userid").then(function (userid) {
-            self.http.get('http://localhost:8081/api/cages/user/' + userid).subscribe(res => {
+            self.http.get('http://localhost:8081/api/cages/user/' + userid).subscribe((res: resultData) => {
                 let data = res.data, i, j;
                 for (i in data) {
                     for (j in self.couples)
@@ -69,8 +82,6 @@ export class CagesPage {
 
     saveCage() {
 
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'

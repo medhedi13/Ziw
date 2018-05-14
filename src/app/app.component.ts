@@ -7,12 +7,13 @@ import {Chat} from "../pages/chat/chat";
 import {CagesPage} from "../pages/cages/cages";
 import {TabsPage} from "../pages/tabs/tabs";
 import {BirdsPage} from "../pages/birds/birds";
+import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = BirdsPage;
+  rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

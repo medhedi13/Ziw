@@ -2,7 +2,6 @@ import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {Http, HttpModule} from '@angular/http';
 import {AboutPage} from '../pages/about/about';
 import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
@@ -22,6 +21,7 @@ import {EmojiProvider} from '../providers/emoji/emoji';
 import {ChatService} from '../providers/chat-service/chat-service';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CagesPage} from "../pages/cages/cages";
+import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
 
 
 @NgModule({
@@ -37,7 +37,8 @@ import {CagesPage} from "../pages/cages/cages";
         SidebarComponent,
         BirdsPage,
         CagesPage,
-        Chat
+        Chat,
+        ListUserChatPage
     ],
     imports: [
         BrowserModule,
@@ -58,7 +59,8 @@ import {CagesPage} from "../pages/cages/cages";
         ProfilePage,
         BirdsPage,
         CagesPage,
-        Chat
+        Chat,
+        ListUserChatPage
     ],
     providers: [
         StatusBar,
@@ -70,8 +72,7 @@ import {CagesPage} from "../pages/cages/cages";
         EmojiProvider,
         ChatService,
         HttpClient,
-        HttpClientModule,
-        Http
+        HttpClientModule
 
 
     ]

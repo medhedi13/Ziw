@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
-import {Http, Headers} from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +13,7 @@ export class HomePage {
   posts: Array<object>;
   comment: String;
 
-  constructor(public navCtrl: NavController, private http: Http, private storage:Storage) {
+  constructor(public navCtrl: NavController, private http: HttpClient, private storage:Storage) {
     this.getPost();
     console.log(this.storage.get("token"));
     console.log(this.storage.get("userid"));
@@ -21,18 +21,18 @@ export class HomePage {
   }
 
   addPost() {
-    // this.showLoader();
-    // this.loading.dismiss();
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
 
     this.http.post('http://localhost:8081/api/publications', JSON.stringify({
       "content": this.comment,
       "user": "5ae07ee87840d81fe4b554b4",
       "likes": [{"user": "5ae07ee87840d81fe4b554b4"}],
       "photos": "url here"
-    }), {headers: headers}).subscribe(res => {
-      console.log(res.json());
+    }), {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })
+    }
+  ).subscribe(res => {
       this.getPost();
     }, (err) => {
       console.log(err);
@@ -40,13 +40,13 @@ export class HomePage {
   }
 
   getPost() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    this.http.get('http://localhost:8081/api/publications').subscribe(res => {
-      let data = res.json();
+      class resultData {
+          data:Array<any>
+      }
+    this.http.get('http://localhost:8081/api/publications').subscribe((res:resultData) => {
+      let data = res;
       this.posts = data.data;
-      console.log(res.json());
+      console.log(res);
     }, (err) => {
       console.log(err);
     });

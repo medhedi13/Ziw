@@ -2,6 +2,7 @@ import {Component, Input,ViewChild} from '@angular/core';
 import {NavController} from "ionic-angular";
 import {BirdsPage} from "../../pages/birds/birds";
 import {TabsPage} from "../../pages/tabs/tabs";
+import {ListUserChatPage} from "../../pages/list-user-chat/list-user-chat";
 
 
 /**
@@ -26,5 +27,9 @@ export class SidebarComponent {
 
   Doemchy() {
     this.navCtrl.push(BirdsPage)
+  }
+  chat()
+  {
+      this.navCtrl.push(ListUserChatPage);
   }
 }

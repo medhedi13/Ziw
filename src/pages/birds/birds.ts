@@ -9,6 +9,7 @@ import {Storage} from "@ionic/storage";
   selector: 'page-birds',
   templateUrl: 'birds.html',
 })
+
 export class BirdsPage {
   birds = [];
 
@@ -23,9 +24,12 @@ export class BirdsPage {
 
 
   getBirds() {
+      class resultData {
+          data:Array<any>
+      }
     let self = this;
     this.storage.get("userid").then(function (userid) {
-      self.http.get('http://localhost:8081/api/birds/user/' + userid).subscribe(res => {
+      self.http.get('http://localhost:8081/api/birds/user/' + userid).subscribe((res:resultData) => {
         let data = res;
         self.birds = data.data;
         console.log(res);
