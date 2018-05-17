@@ -36,7 +36,8 @@
         </ion-item>
         <ion-item>
             <ion-label>Birth:</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="bird.birth" [ngModelOptions]="{standalone: true}"></ion-datetime>
+            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="bird.birth"
+                          [ngModelOptions]="{standalone: true}"></ion-datetime>
 
         </ion-item>
         <ion-item>
@@ -64,9 +65,13 @@
         <ion-card-content>
             <p>{{item.description}}</p>
         </ion-card-content>
+        <div style="justify-content: center;display: flex;">
+
+            <button ion-button color="danger" (click)="deleteBird(item._id)">Delete</button>
+            <button ion-button color="light" (click)="editBird(item)">Edit</button>
+
+        </div>
 
     </ion-card>
-
-
 </ion-content>
 

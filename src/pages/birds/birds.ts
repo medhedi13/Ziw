@@ -59,6 +59,7 @@ export class BirdsPage {
             self.http.post('http://localhost:8081/api/birds/', JSON.stringify(self.bird),
                 httpOptions).subscribe(res => {
                 console.log(res);
+                self.getBirds();
                 //
             }, (err) => {
                 console.log(err);
@@ -71,12 +72,28 @@ export class BirdsPage {
             data: Array<any>
         }
 
-        let self = this;
         this.http.get('http://localhost:8081/api/familys').subscribe((res: resultData) => {
             this.familys = res.data;
             console.log(res);
         }, (err) => {
             console.log(err);
         });
+    }
+
+    editBird(obj:bird){
+        this.bird=obj;
+    }
+    deleteBird(id){
+        class resultData {
+            data: Array<any>
+        }
+        console.log(id);
+        this.http.delete('http://localhost:8081/api/birds/'+id).subscribe((res: resultData) => {
+            this.getBirds();
+            console.log(res);
+        }, (err) => {
+            console.log(err);
+        });
+
     }
 }
