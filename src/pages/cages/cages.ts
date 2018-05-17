@@ -28,6 +28,7 @@ export class CagesPage {
     cages = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private storage: Storage) {
+        this.cage=new cageType();
         (async () => {
             await this.getCouples();
             this.getCages();

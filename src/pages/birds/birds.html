@@ -6,26 +6,50 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title align="center">birds</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title align="center">birds</ion-title>
+    </ion-navbar>
 
 </ion-header>
-
-
 
 
 <ion-content padding>
 
 
-<form (submit)="getBirds()">
+    <form (submit)="addBird()">
 
-    <hr>
-    <button ion-button type="submit" block>Save Changes</button>
-  </form>
+        <ion-item>
+            <ion-label>Name:</ion-label>
+            <ion-input type="text" [(ngModel)]="bird.name" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Ring:</ion-label>
+            <ion-input type="text" [(ngModel)]="bird.ring" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Family:</ion-label>
+            <ion-select [(ngModel)]="bird.family" placeholder="select family" [ngModelOptions]="{standalone: true}">
+                <ion-option *ngFor="let family of familys" value="{{family._id}}">{{family.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Birth:</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="bird.birth" [ngModelOptions]="{standalone: true}"></ion-datetime>
+
+        </ion-item>
+        <ion-item>
+            <ion-label>Description:</ion-label>
+            <ion-input type="text" [(ngModel)]="bird.description" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
+        <hr>
+        <button ion-button type="submit" block>Add bird</button>
+    </form>
 
 
-    <ion-card  *ngFor="let item of birds">
+    <ion-card *ngFor="let item of birds">
 
         <ion-item>
             <ion-avatar item-start>

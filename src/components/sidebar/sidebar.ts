@@ -3,6 +3,7 @@ import {NavController} from "ionic-angular";
 import {BirdsPage} from "../../pages/birds/birds";
 import {TabsPage} from "../../pages/tabs/tabs";
 import {ListUserChatPage} from "../../pages/list-user-chat/list-user-chat";
+import {CagesPage} from "../../pages/cages/cages";
 
 
 /**
@@ -16,20 +17,10 @@ import {ListUserChatPage} from "../../pages/list-user-chat/list-user-chat";
   templateUrl: 'sidebar.html'
 })
 export class SidebarComponent {
-  @Input("idSide") testing;
-  text: string;
-  content: any;
-
+    @Input("idSide") testing;
+    birdPage=BirdsPage;
+    chat=ListUserChatPage;
+    cages=CagesPage;
   constructor(public navCtrl:NavController) {
-    console.log('Hello SidebarComponent Component');
-    this.text = 'Hello World';
-  }
-
-  Doemchy() {
-    this.navCtrl.push(BirdsPage)
-  }
-  chat()
-  {
-      this.navCtrl.push(ListUserChatPage);
   }
 }
