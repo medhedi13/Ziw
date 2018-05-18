@@ -7,7 +7,7 @@ import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {LoginPage} from '../pages/login/login';
-import {BirdsPage} from '../pages/birds/birds';
+import {bird, BirdsPage} from '../pages/birds/birds';
 import {RegisterPage} from '../pages/register/register';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -22,6 +22,7 @@ import {ChatService} from '../providers/chat-service/chat-service';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CagesPage} from "../pages/cages/cages";
 import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
+import {BirdModalPage} from "../pages/bird-modal/bird-modal";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
         BirdsPage,
         CagesPage,
         Chat,
-        ListUserChatPage
+        ListUserChatPage,
+        BirdModalPage
     ],
     imports: [
         BrowserModule,
@@ -60,7 +62,8 @@ import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
         BirdsPage,
         CagesPage,
         Chat,
-        ListUserChatPage
+        ListUserChatPage,
+        BirdModalPage
     ],
     providers: [
         StatusBar,

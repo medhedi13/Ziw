@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage} from 'ionic-angular';
+import {IonicPage, ModalController} from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
+import {BirdModalPage} from "../bird-modal/bird-modal";
 
 export class bird {
+    _id: String;
     ring: String;
     name: String;
     family: String;
@@ -22,11 +24,17 @@ export class bird {
 export class BirdsPage {
     birds = [];
     bird: bird;
-    familys=[];
-    constructor(private http: HttpClient, private storage: Storage) {
-        this.bird = new bird();
+    familys = [];
+    constructor(private http: HttpClient, private storage: Storage, private modalCtrl: ModalController) {
         this.getBirds();
-        this.getFamily();
+    }
+
+    openBird() {
+        let modal = this.modalCtrl.create(BirdModalPage);
+        modal.onDidDismiss(data => {
+          this.getBirds();
+        });
+        modal.present();
     }
 
     getBirds() {
@@ -46,49 +54,27 @@ export class BirdsPage {
         });
     }
 
-    addBird() {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
 
-        let self = this;
-        this.storage.get("userid").then(function (userID) {
-            self.bird.owner = userID;
-            self.http.post('http://localhost:8081/api/birds/', JSON.stringify(self.bird),
-                httpOptions).subscribe(res => {
-                console.log(res);
-                self.getBirds();
-                //
-            }, (err) => {
-                console.log(err);
-            });
+
+
+    editBird(obj: bird) {
+        this.bird = obj;
+        let modal = this.modalCtrl.create(BirdModalPage,{bird:this.bird});
+        modal.onDidDismiss(data => {
+            this.getBirds();
         });
+        modal.present();
+
+        // this.addBirdBtn = false;
     }
 
-    getFamily() {
+    deleteBird(id) {
         class resultData {
             data: Array<any>
         }
 
-        this.http.get('http://localhost:8081/api/familys').subscribe((res: resultData) => {
-            this.familys = res.data;
-            console.log(res);
-        }, (err) => {
-            console.log(err);
-        });
-    }
-
-    editBird(obj:bird){
-        this.bird=obj;
-    }
-    deleteBird(id){
-        class resultData {
-            data: Array<any>
-        }
         console.log(id);
-        this.http.delete('http://localhost:8081/api/birds/'+id).subscribe((res: resultData) => {
+        this.http.delete('http://localhost:8081/api/birds/' + id).subscribe((res: resultData) => {
             this.getBirds();
             console.log(res);
         }, (err) => {
