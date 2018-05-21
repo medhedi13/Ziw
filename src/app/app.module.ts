@@ -31,6 +31,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
 import * as cloudinary from 'cloudinary-core';
 import cloudinaryConfiguration from './config';
+import {CageModalPage} from "../pages/cage-modal/cage-modal";
 @NgModule({
     declarations: [
         MyApp,
@@ -47,7 +48,7 @@ import cloudinaryConfiguration from './config';
         Chat,
         ListUserChatPage,
         BirdModalPage,
-
+        CageModalPage
     ],
     imports: [
         BrowserModule,
@@ -71,7 +72,8 @@ import cloudinaryConfiguration from './config';
         CagesPage,
         Chat,
         ListUserChatPage,
-        BirdModalPage
+        BirdModalPage,
+        CageModalPage
     ],
     providers: [
         StatusBar,

@@ -1,0 +1,45 @@
+<!--
+  Generated template for the CageModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cage-modal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form >
+        <ion-item>
+            <ion-label>Number cage:</ion-label>
+            <ion-input type="number" [(ngModel)]="cage.number" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Size:</ion-label>
+            <ion-input type="text" [(ngModel)]="cage.size" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Couple</ion-label>
+            <ion-select [(ngModel)]="cage.couple" placeholder="select couple" [ngModelOptions]="{standalone: true}">
+                <ion-option *ngFor="let couple of couples" value="{{couple._id}}">{{couple.description}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Eggs:</ion-label>
+            <ion-input type="number" [(ngModel)]="cage.eggs" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
+        <hr>
+        <button ion-button type="submit" (click)="saveCage()"  >  {{addCage?"Add Cage":"Edit Cage"}}</button>
+        <button ion-button color="light" (click)="dismiss()"> cancel</button>
+    </form>
+
+</ion-content>
