@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {IonicPage, ModalController} from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
@@ -22,17 +22,23 @@ export class bird {
 })
 
 export class BirdsPage {
+
     birds = [];
     bird: bird;
     familys = [];
-    constructor(private http: HttpClient, private storage: Storage, private modalCtrl: ModalController) {
+
+
+    constructor(private http: HttpClient,
+                private storage: Storage,
+                private modalCtrl: ModalController) {
+
         this.getBirds();
     }
 
     openBird() {
         let modal = this.modalCtrl.create(BirdModalPage);
         modal.onDidDismiss(data => {
-          this.getBirds();
+            this.getBirds();
         });
         modal.present();
     }
@@ -55,11 +61,9 @@ export class BirdsPage {
     }
 
 
-
-
     editBird(obj: bird) {
         this.bird = obj;
-        let modal = this.modalCtrl.create(BirdModalPage,{bird:this.bird});
+        let modal = this.modalCtrl.create(BirdModalPage, {bird: this.bird});
         modal.onDidDismiss(data => {
             this.getBirds();
         });

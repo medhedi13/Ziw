@@ -24,7 +24,13 @@ import {CagesPage} from "../pages/cages/cages";
 import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
 import {BirdModalPage} from "../pages/bird-modal/bird-modal";
 
+// File upload module
+import {FileUploadModule} from 'ng2-file-upload';
 
+// Cloudinary module
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
+import * as cloudinary from 'cloudinary-core';
+import cloudinaryConfiguration from './config';
 @NgModule({
     declarations: [
         MyApp,
@@ -40,14 +46,16 @@ import {BirdModalPage} from "../pages/bird-modal/bird-modal";
         CagesPage,
         Chat,
         ListUserChatPage,
-        BirdModalPage
+        BirdModalPage,
+
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         IonicModule.forRoot(MyApp),
         IonicStorageModule.forRoot(),
-
+        FileUploadModule,
+        CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
     ],
     bootstrap: [IonicApp],
     entryComponents: [
