@@ -32,6 +32,7 @@ import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@clo
 import * as cloudinary from 'cloudinary-core';
 import cloudinaryConfiguration from './config';
 import {CageModalPage} from "../pages/cage-modal/cage-modal";
+import {PostPage} from "../pages/post/post";
 @NgModule({
     declarations: [
         MyApp,
@@ -48,7 +49,8 @@ import {CageModalPage} from "../pages/cage-modal/cage-modal";
         Chat,
         ListUserChatPage,
         BirdModalPage,
-        CageModalPage
+        CageModalPage,
+        PostPage
     ],
     imports: [
         BrowserModule,
@@ -73,7 +75,8 @@ import {CageModalPage} from "../pages/cage-modal/cage-modal";
         Chat,
         ListUserChatPage,
         BirdModalPage,
-        CageModalPage
+        CageModalPage,
+        PostPage
     ],
     providers: [
         StatusBar,

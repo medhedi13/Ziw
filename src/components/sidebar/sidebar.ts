@@ -4,6 +4,7 @@ import {BirdsPage} from "../../pages/birds/birds";
 import {TabsPage} from "../../pages/tabs/tabs";
 import {ListUserChatPage} from "../../pages/list-user-chat/list-user-chat";
 import {CagesPage} from "../../pages/cages/cages";
+import {PostPage} from "../../pages/post/post";
 
 
 /**
@@ -21,6 +22,7 @@ export class SidebarComponent {
     birdPage=BirdsPage;
     chat=ListUserChatPage;
     cages=CagesPage;
+    myposts=PostPage;
   constructor(public navCtrl:NavController) {
   }
 }
