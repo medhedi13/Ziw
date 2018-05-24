@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-
+import  Moment from 'moment';
 import { Storage } from '@ionic/storage';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
@@ -25,7 +25,7 @@ export class HomePage {
     this.http.post('http://localhost:8081/api/publications', JSON.stringify({
       "content": this.comment,
       "user": "5ae07ee87840d81fe4b554b4",
-      "likes": [{"user": "5ae07ee87840d81fe4b554b4"}],
+      "likes": [],
       "photos": "url here"
     }), {
         headers: new HttpHeaders({
@@ -50,5 +50,25 @@ export class HomePage {
     }, (err) => {
       console.log(err);
     });
+  }
+
+  humanDate(str)
+  {
+      return Moment(str).fromNow();
+  }
+
+  like(id){
+      let self=this;
+      self.storage.get("userid").then(function (userid) {
+          self.http.post('http://localhost:8081/api/publications/like/'+id,JSON.stringify({
+              userid:userid
+          }), {
+              headers: new HttpHeaders({
+                  'Content-Type': 'application/json'
+              })
+          }).subscribe(function (result) {
+              self.getPost();
+          })
+      })
   }
 }

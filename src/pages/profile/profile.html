@@ -1,54 +1,58 @@
-<!--<ion-fab style="margin-bottom: 20px" top right edge>-->
-<!--<button ion-fab mini><ion-icon name="add"></ion-icon></button>-->
-<!--<ion-fab-list>-->
-<!--<button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>-->
-<!--<button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>-->
-<!--<button ion-fab><ion-icon name=""></ion-icon></button>-->
-<!--<button ion-fab><ion-icon name=""></ion-icon></button>-->
-<!--</ion-fab-list>-->
-<!--</ion-fab>-->
 <ion-header>
-  <ion-navbar>
-    <ion-title align="center">Profile</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title align="center">Profile</ion-title>
+    </ion-navbar>
 
 </ion-header>
 <ion-content padding>
-  <!--<button ion-button menuToggle>Toggle Menu</button>-->
-  <ion-label>
-    <h1 align="center">{{fullname}}</h1>
-  </ion-label>
-  <ion-item>
-    <div class="avatarClass" [style.background-image]="'url('+user.avatar+')'"></div>
-  </ion-item>
-  <form (ngSubmit)="saveUser()">
+    <!--<button ion-button menuToggle>Toggle Menu</button>-->
+    <ion-label>
+        <h1 align="center">{{fullname}}</h1>
+    </ion-label>
     <ion-item>
-      <ion-label>First Name:</ion-label>
-  <ion-input type="text" [(ngModel)]="user.first_name" name="firstname">
-  </ion-input>
+        <div class="avatarClass" [style.background-image]="'url('+user.avatar+')'"></div>
     </ion-item>
     <ion-item>
-      <ion-label>Last Name:</ion-label>
-  <ion-input type="text" [(ngModel)]="user.last_name" name="lastname">
-  </ion-input>
+
+        <div id="direct_upload" ng2FileDrop [uploader]="uploader" (fileOver)="fileOverBase($event)"
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}">
+            <form>
+                <label ion-button color="light" class="upload_button" for="fileupload">Upload</label>
+                <input type="file" id="fileupload" #fileInput ng2FileSelect [style.display]="'none'"
+                       [uploader]="uploader" (change)="fileInput.value=''"
+                       multiple/>
+
+            </form>
+        </div>
     </ion-item>
-    <ion-item>
-      <ion-label>City:</ion-label>
-  <ion-input type="text" [(ngModel)]="user.city" name="city">
-  </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Email Adress:</ion-label>
-  <ion-input type="text" [(ngModel)]="user.email" name="email">
-  </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Phone Number :</ion-label>
-  <ion-input type="text" [(ngModel)]="user.phone" name="phone">
-  </ion-input>
-    </ion-item>
-    <hr>
-    <button ion-button type="submit" block>Save Changes</button>
-  </form>
+    <form (ngSubmit)="saveUser()">
+        <ion-item>
+            <ion-label>First Name:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.first_name" name="firstname">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Last Name:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.last_name" name="lastname">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>City:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.city" name="city">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Email Adress:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.email" name="email">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Phone Number :</ion-label>
+            <ion-input type="text" [(ngModel)]="user.phone" name="phone">
+            </ion-input>
+        </ion-item>
+        <hr>
+        <button ion-button type="submit" block>Save Changes</button>
+    </form>
 
 </ion-content>

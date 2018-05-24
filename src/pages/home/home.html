@@ -13,10 +13,10 @@
 
   <ion-item>
     <ion-avatar item-start>
-      <img src="https://image.ibb.co/dQ8XYc/logo_ataoo1.png">
+      <img [src]="item.userInfo[0].avatar">
     </ion-avatar>
     <h2>{{item.userInfo[0].first_name+" "+item.userInfo[0].last_name}}</h2>
-    <p>{{item.created}}</p>
+    <p>{{humanDate(item.created)}}</p>
   </ion-item>
 
   <img src="https://image.ibb.co/e1Hbtc/Capture.jpg">
@@ -27,21 +27,10 @@
 
   <ion-row>
     <ion-col>
-      <button ion-button icon-left clear small>
+      <button ion-button icon-left clear small (click)="like(item._id)">
         <ion-icon name="thumbs-up"></ion-icon>
         <div>{{item.likes.length}} Likes</div>
       </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>0 Comments</div>
-      </button>
-    </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        1h ago
-      </ion-note>
     </ion-col>
   </ion-row>
 
