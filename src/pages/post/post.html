@@ -15,51 +15,62 @@
 
 <ion-content padding>
 
-
-
     <form (submit)="addPost()">
-
+        <ion-card>
+            <div  style="height: 150px;
+        width: 150px;
+        margin: 0 auto;
+        display: block;
+        background-color: #eee;
+        background-size: cover;
+    background-position: center;"
+                  [style.backgroundImage]="'url('+photoPost+')'"
+                  [style.display]="photoPost==''?'none':'block'"></div>
+        </ion-card>
         <ion-item>
             <ion-label floating>Post</ion-label>
-            <ion-input  type="text" [(ngModel)]="comment" placeholder="" name="content"></ion-input>
+            <ion-input type="text" [(ngModel)]="comment" placeholder="" name="content"></ion-input>
 
         </ion-item>
+        <div id="direct_upload" ng2FileDrop [uploader]="uploader" (fileOver)="fileOverBase($event)"
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" style="display: inline-block;">
+            <form>
+                <label ion-button color="light" class="upload_button" for="fileupload">Upload Image</label>
+                <input type="file" id="fileupload" #fileInput ng2FileSelect [style.display]="'none'"
+                       [uploader]="uploader" (change)="fileInput.value=''"
+                       multiple/>
 
+            </form>
+        </div>
         <button style="float: right" ion-button type="submit">Add post</button>
-    </form >
-    <ion-card  *ngFor="let item of posts">
+    </form>
+    <ion-card *ngFor="let item of posts">
 
         <ion-item>
             <ion-avatar item-start>
-                <img src="https://image.ibb.co/dQ8XYc/logo_ataoo1.png">
+                <img [src]="item.userInfo[0].avatar">
             </ion-avatar>
-            <h2>ATAOO</h2>
-            <p>{{item.created}}</p>
+            <h2>{{item.userInfo[0].first_name+" "+item.userInfo[0].last_name}}</h2>
+            <p>{{humanDate(item.created)}}</p>
         </ion-item>
-
-        <img src="https://image.ibb.co/e1Hbtc/Capture.jpg">
-
+        <div style="width: 100%;
+                height: 200px;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: #e0e0e0"
+             [style.background-image]="'url('+item.photos+')'"
+             [style.display]="item.photos==''?'none':'block'"></div>
         <ion-card-content>
             <p>{{item.content}}</p>
         </ion-card-content>
 
         <ion-row>
             <ion-col>
-                <button ion-button icon-left clear small>
+                <button ion-button icon-left clear small (click)="like(item._id)">
                     <ion-icon name="thumbs-up"></ion-icon>
                     <div>{{item.likes.length}} Likes</div>
                 </button>
-            </ion-col>
-            <ion-col>
-                <button ion-button icon-left clear small>
-                    <ion-icon name="text"></ion-icon>
-                    <div>0 Comments</div>
-                </button>
-            </ion-col>
-            <ion-col center text-center>
-                <ion-note>
-                    1h ago
-                </ion-note>
             </ion-col>
         </ion-row>
 

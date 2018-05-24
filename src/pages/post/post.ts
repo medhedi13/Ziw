@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
+import Moment from 'moment';
 import {Storage} from '@ionic/storage';
 import {FileUploader, FileUploaderOptions, ParsedResponseHeaders} from "ng2-file-upload";
 import {Cloudinary} from "@cloudinary/angular-5.x";
@@ -25,7 +26,7 @@ export class PostPage {
     private uploader: FileUploader;
     posts: Array<object>;
     comment: String;
-    photos = "";
+    photoPost='';
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -79,7 +80,7 @@ export class PostPage {
         // Update model on completion of uploading a file
         this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
             let data = JSON.parse(response);
-            this.photos = data.url;
+            this.photoPost = data.url;
             console.log(item, status, data);
         };
 
@@ -94,7 +95,7 @@ export class PostPage {
                     "content": self.comment,
                     "user": userid,
                     "likes": [],
-                    "photos": self.photos
+                    "photos": self.photoPost
                 }), {
                     headers: new HttpHeaders({
                         'Content-Type': 'application/json'
@@ -102,7 +103,7 @@ export class PostPage {
                 }
             ).subscribe(res => {
                 self.comment="";
-                self.photos="";
+                self.photoPost="";
                 self.getPost();
             }, (err) => {
                 console.log(err);
@@ -128,6 +129,24 @@ export class PostPage {
         });
     }
 
+    humanDate(str) {
+        return Moment(str).fromNow();
+    }
+
+    like(id) {
+        let self = this;
+        self.storage.get("userid").then(function (userid) {
+            self.http.post('http://localhost:8081/api/publications/like/' + id, JSON.stringify({
+                userid: userid
+            }), {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json'
+                })
+            }).subscribe(function (result) {
+                self.getPost();
+            })
+        })
+    }
     deletePost(id) {
         this.http.delete('http://localhost:8081/api/publications/' + id).subscribe(res => this.getPost());
     }
