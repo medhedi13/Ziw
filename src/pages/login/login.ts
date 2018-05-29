@@ -6,17 +6,19 @@ import { RegisterPage } from '../register/register';
 import { Storage } from '@ionic/storage';
 import { HomePage} from "../home/home";
 import { Events } from 'ionic-angular';
+import {Facebook,FacebookLoginResponse} from "@ionic-native/facebook";
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-
+  login=null;
   loading: any;
-  loginData = { email:'', password:'' };
+  loginData = { email:'', password:'',first_name:'',last_name:'' };
   data: any;
 
-  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController, private storage: Storage,public events: Events) {}
+  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController, private storage: Storage,public events: Events, private facebook:Facebook) {}
 
   doLogin() {
   this.showLoader();
@@ -70,6 +72,15 @@ export class LoginPage {
     });
 
     toast.present();
+  }
+
+  loginfb() {
+    this.facebook.login(['email','public_profile']).then((response:FacebookLoginResponse) => {
+    this.facebook.api("http://localhost:8081/api/users/flogin",[]).then(profile => {
+      this.login= {email:profile['email'],first_name:profile['first_name'],last_name:profile['last_name']}
+      })
+  })
+
   }
 
 }

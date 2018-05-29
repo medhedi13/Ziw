@@ -23,7 +23,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CagesPage} from "../pages/cages/cages";
 import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
 import {BirdModalPage} from "../pages/bird-modal/bird-modal";
-
+import {Facebook} from "@ionic-native/facebook";
 // File upload module
 import {FileUploadModule} from 'ng2-file-upload';
 
@@ -88,7 +88,8 @@ import {PostPage} from "../pages/post/post";
         EmojiProvider,
         ChatService,
         HttpClient,
-        HttpClientModule
+        HttpClientModule,
+        Facebook
 
 
     ]
