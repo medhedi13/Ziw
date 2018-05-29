@@ -1,2 +1,24 @@
+<ion-menu [content]="contentRoot" >
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list >
+            <button menuClose ion-item (click)="openPage(myhome,{menuLogin:false,selectPage:0})">Home</button>
 
-<ion-nav   [root]="rootPage"></ion-nav>
+            <ion-item menuClose detail-none>Notifications (in progress)</ion-item>
+            <ion-item menuClose detail-none  (click)="openPage(myhome,{menuLogin:false,selectPage:1})">My Profile</ion-item>
+            <ion-item menuClose detail-none (click)="openPage(chat)">Inbox</ion-item>
+            <ion-item menuClose detail-none (click)="openPage(myposts)">My Posts</ion-item>
+            <ion-item menuClose detail-none (click)="openPage(birdPage)">My birds</ion-item>
+            <ion-item menuClose detail-none (click)="openPage(cages)">My birds in cages</ion-item>
+            <ion-item menuClose detail-none (click)="openPage(aboutus)">About Us</ion-item>
+            <ion-item menuClose detail-none>Report a bug (inprogress)</ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-menu>
+
+<ion-nav   #contentRoot [root]="rootPage"></ion-nav>
