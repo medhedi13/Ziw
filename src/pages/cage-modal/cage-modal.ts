@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import {Storage} from "@ionic/storage";
+
 /**
  * Generated class for the CageModalPage page.
  *
@@ -10,55 +11,64 @@ import {Storage} from "@ionic/storage";
  * Ionic pages and navigation.
  */
 
-export class cageType{
-    _id:String;
-    owner:string;
-    number:number;
+export class cageType {
+    _id: String;
+    owner: string;
+    number: number;
+    male: String;
+    female: String;
 }
+
 @IonicPage()
 @Component({
-  selector: 'page-cage-modal',
-  templateUrl: 'cage-modal.html',
+    selector: 'page-cage-modal',
+    templateUrl: 'cage-modal.html',
 })
 export class CageModalPage {
-    couples=[];
-    cage:cageType;
-    addCage:Boolean;
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private storage:Storage,
-              private http:HttpClient,
-              private viewCtrl:ViewController) {
+    cage: cageType;
+    addCage: Boolean;
+    userid: String;
+    birds: Array<any>;
 
-      this.cage=new cageType();
-      this.getCouples();
-      this.addCage = true;
-      if (navParams.get('cage')) {
-          this.addCage = false;
-          this.cage = navParams.get('cage');
-      }
-  }
-    getCouples() {
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                private storage: Storage,
+                private http: HttpClient,
+                private viewCtrl: ViewController) {
 
-        class resultData {
-            data:Array<any>
+        this.cage = new cageType();
+        this.addCage = true;
+        if (navParams.get('cage')) {
+            this.addCage = false;
+            this.cage = navParams.get('cage');
         }
-        let self = this;
-        new Promise(function (resolve) {
-
-            self.storage.get("userid").then(function (userid) {
-                self.http.get('http://localhost:8081/api/couples/user/' + userid).subscribe((res:resultData) => {
-                    let data = res;
-                    self.couples = data.data;
-                    console.log(data);
-                    resolve();
-                }, (err) => {
-                    console.log(err);
-                });
-            });
-        })
+        this.getUserId();
+        this.birds = [];
+        this.getBirds();
     }
 
+    getUserId() {
+        let self = this;
+        this.storage.get("userid").then(function (userID) {
+            self.userid = userID;
+        });
+    }
+
+    getBirds() {
+        class resultData {
+            data: Array<any>
+        }
+
+        let self = this;
+        this.storage.get("userid").then(function (userid) {
+            self.http.get('http://localhost:8081/api/birds/user/' + userid).subscribe((res: resultData) => {
+                self.birds = res.data;
+                console.log(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
     saveCage() {
 
         const httpOptions = {
@@ -72,7 +82,7 @@ export class CageModalPage {
             self.cage.owner = userID;
             self.cage.number = Number(self.cage.number);
             console.log(self.cage);
-            if(self.addCage){
+            if (self.addCage) {
 
                 self.http.post('http://localhost:8081/api/cages/', JSON.stringify(self.cage),
                     httpOptions).subscribe(res => {
@@ -83,9 +93,9 @@ export class CageModalPage {
                 }, (err) => {
                     console.log(err);
                 });
-            }else{
+            } else {
 
-                self.http.put('http://localhost:8081/api/cages/'+self.cage._id, JSON.stringify(self.cage),
+                self.http.put('http://localhost:8081/api/cages/' + self.cage._id, JSON.stringify(self.cage),
                     httpOptions).subscribe(res => {
                     console.log(res);
                     //
