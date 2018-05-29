@@ -88,7 +88,11 @@ export class CagesPage {
                 'Content-Type': 'application/json'
             })
         };
+        let today = new Date();
+        let dd = today.getDate();
+        today.setDate(dd+10);
 
+        console.log(today);
         let self = this;
         this.storage.get("userid").then(function (userID) {
             self.cage.owner = userID;
