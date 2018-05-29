@@ -28,14 +28,14 @@
         <ion-item>
             <ion-label>male bird</ion-label>
             <ion-select [(ngModel)]="cage.male" placeholder="select male" [ngModelOptions]="{standalone: true}">
-                <ion-option *ngFor="let bird of birds" value="{{bird._id}}">{{bird.name}}</ion-option>
+                <ion-option *ngFor="let bird of birds" value="{{bird._id}}" disabled="{{cage.female==bird._id}}">{{bird.name}}</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
             <ion-label>female bird</ion-label>
             <ion-select [(ngModel)]="cage.female" placeholder="select female" [ngModelOptions]="{standalone: true}">
-                <ion-option *ngFor="let bird of birds" value="{{bird._id}}">{{bird.name}}</ion-option>
+                <ion-option  *ngFor="let bird of birds" value="{{bird._id}}" disabled="{{cage.male==bird._id}}">{{bird.name}}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>

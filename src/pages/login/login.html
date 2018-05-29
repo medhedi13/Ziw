@@ -1,26 +1,27 @@
 <ion-content padding>
-  <h2>Please, Login</h2>
-  <form (submit)="doLogin()">
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input [(ngModel)]="loginData.email" name="email" type="text" placeholder="Email" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input [(ngModel)]="loginData.password" name="password" type="password" placeholder="Password"></ion-input>
-    </ion-item>
-    <br>
-    <button ion-button block type="submit">
-      Login
+    <h2>Please, Login</h2>
+    <form (submit)="doLogin()">
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input [(ngModel)]="loginData.email" name="email" type="text" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input [(ngModel)]="loginData.password" name="password" type="password"
+                       placeholder="Password"></ion-input>
+        </ion-item>
+        <br>
+        <button ion-button block type="submit">
+            Login
+        </button>
+        <br>
+    </form>
+    <button ion-button block (click)="loginFBTest('facebook')">
+        Login With Facebook
     </button>
-    <br>
-  </form>
-  <button ion-button block (click)="loginfb()">
-    Login With Facebook
-  </button>
 
-  <button ion-button block clear (click)="register()">
-    No have an account? Register Now
-  </button>
+    <button ion-button block clear (click)="register()">
+        No have an account? Register Now
+    </button>
 
 </ion-content>

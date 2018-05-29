@@ -23,7 +23,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CagesPage} from "../pages/cages/cages";
 import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
 import {BirdModalPage} from "../pages/bird-modal/bird-modal";
-import {Facebook} from "@ionic-native/facebook";
+
 // File upload module
 import {FileUploadModule} from 'ng2-file-upload';
 
@@ -33,6 +33,24 @@ import * as cloudinary from 'cloudinary-core';
 import cloudinaryConfiguration from './config';
 import {CageModalPage} from "../pages/cage-modal/cage-modal";
 import {PostPage} from "../pages/post/post";
+import {
+    SocialLoginModule,
+    AuthServiceConfig,
+    FacebookLoginProvider,
+} from "angular5-social-login";
+
+export function getAuthServiceConfigs() {
+    let config = new AuthServiceConfig(
+        [
+            {
+                id: FacebookLoginProvider.PROVIDER_ID,
+                provider: new FacebookLoginProvider("856754984394109")
+            },
+        ]
+    );
+    return config;
+}
+
 @NgModule({
     declarations: [
         MyApp,
@@ -59,6 +77,7 @@ import {PostPage} from "../pages/post/post";
         IonicStorageModule.forRoot(),
         FileUploadModule,
         CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
+        SocialLoginModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -89,8 +108,10 @@ import {PostPage} from "../pages/post/post";
         ChatService,
         HttpClient,
         HttpClientModule,
-        Facebook
-
+        {
+            provide: AuthServiceConfig,
+            useFactory: getAuthServiceConfigs
+        }
 
     ]
 })
