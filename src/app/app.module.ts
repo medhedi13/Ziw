@@ -6,33 +6,37 @@ import {AboutPage} from '../pages/about/about';
 import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
-import {LoginPage} from '../pages/login/login';
-import {bird, BirdsPage} from '../pages/birds/birds';
-import {RegisterPage} from '../pages/register/register';
+import {LoginPageModule} from '../pages/login/login.module';
+import {BirdsPageModule} from '../pages/birds/birds.module';
+import {RegisterPageModule} from '../pages/register/register.module';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AuthService} from '../providers/auth-service/auth-service';
 import {IonicStorageModule} from '@ionic/storage';
-import {ProfilePage} from '../pages/profile/profile';
+import {ProfilePageModule} from '../pages/profile/profile.module';
 import {NO_ERRORS_SCHEMA,} from '@angular/core';
-import {SidebarComponent} from '../components/sidebar/sidebar'
-import {Chat} from "../pages/chat/chat";
+import {ChatModule} from "../pages/chat/chat.module";
 import {EmojiProvider} from '../providers/emoji/emoji';
 import {ChatService} from '../providers/chat-service/chat-service';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {CagesPage} from "../pages/cages/cages";
-import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
-import {BirdModalPage} from "../pages/bird-modal/bird-modal";
+import {CagesPageModule} from "../pages/cages/cages.module";
+import {ListUserChatPageModule} from "../pages/list-user-chat/list-user-chat.module";
+import {BirdModalPageModule} from "../pages/bird-modal/bird-modal.module";
 
 // File upload module
 import {FileUploadModule} from 'ng2-file-upload';
 
 // Cloudinary module
-import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
-import * as cloudinary from 'cloudinary-core';
+import {CloudinaryModule} from '@cloudinary/angular-5.x';
+import {Cloudinary} from 'cloudinary-core';
 import cloudinaryConfiguration from './config';
-import {CageModalPage} from "../pages/cage-modal/cage-modal";
-import {PostPage} from "../pages/post/post";
+import {CageModalPageModule} from "../pages/cage-modal/cage-modal.module";
+import {PostPageModule} from "../pages/post/post.module";
+
+export const cloudinaryLib = {
+    Cloudinary: Cloudinary
+};
+
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -57,18 +61,7 @@ export function getAuthServiceConfigs() {
         AboutPage,
         ContactPage,
         HomePage,
-        TabsPage,
-        LoginPage,
-        RegisterPage,
-        ProfilePage,
-        SidebarComponent,
-        BirdsPage,
-        CagesPage,
-        Chat,
-        ListUserChatPage,
-        BirdModalPage,
-        CageModalPage,
-        PostPage
+        TabsPage
     ],
     imports: [
         BrowserModule,
@@ -76,8 +69,18 @@ export function getAuthServiceConfigs() {
         IonicModule.forRoot(MyApp),
         IonicStorageModule.forRoot(),
         FileUploadModule,
-        CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
-        SocialLoginModule
+        CloudinaryModule.forRoot(cloudinaryLib, cloudinaryConfiguration),
+        SocialLoginModule,
+        BirdModalPageModule,
+        BirdsPageModule,
+        LoginPageModule,
+        RegisterPageModule,
+        ProfilePageModule,
+        CagesPageModule,
+        ListUserChatPageModule,
+        CageModalPageModule,
+        PostPageModule,
+        ChatModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -85,17 +88,7 @@ export function getAuthServiceConfigs() {
         AboutPage,
         ContactPage,
         HomePage,
-        TabsPage,
-        LoginPage,
-        RegisterPage,
-        ProfilePage,
-        BirdsPage,
-        CagesPage,
-        Chat,
-        ListUserChatPage,
-        BirdModalPage,
-        CageModalPage,
-        PostPage
+        TabsPage
     ],
     providers: [
         StatusBar,
@@ -103,7 +96,6 @@ export function getAuthServiceConfigs() {
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AuthService,
         IonicStorageModule,
-        EmojiProvider,
         EmojiProvider,
         ChatService,
         HttpClient,

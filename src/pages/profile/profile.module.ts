@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ProfilePage } from './profile';
 
+import {FileUploadModule} from 'ng2-file-upload';
 @NgModule({
   declarations: [
     ProfilePage,
   ],
-  imports: [
+  imports: [FileUploadModule,
     IonicPageModule.forChild(ProfilePage),
   ],
 })

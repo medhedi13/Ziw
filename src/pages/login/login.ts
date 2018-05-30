@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, LoadingController, ToastController} from 'ionic-angular';
-// import {AuthService} from '../../providers/auth-service/auth-service';
+import {AuthService} from '../../providers/auth-service/auth-service';
 import {TabsPage} from '../tabs/tabs';
 import {RegisterPage} from '../register/register';
 import {Storage} from '@ionic/storage';
@@ -8,7 +8,7 @@ import {HomePage} from "../home/home";
 import {Events} from 'ionic-angular';
 // import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 import {
-    AuthService,
+    AuthService as AuthFb,
     FacebookLoginProvider
 } from 'angular5-social-login';
 
@@ -28,7 +28,7 @@ export class LoginPage {
                 private toastCtrl: ToastController,
                 private storage: Storage,
                 public events: Events,
-                private socialAuthService: AuthService
+                private socialAuthService: AuthFb
                 // private facebook: Facebook
     ) {
     }

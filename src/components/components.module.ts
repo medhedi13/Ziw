@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
-import { SidebarComponent } from './sidebar/sidebar';
-import { EmojiPickerComponent } from './emoji-picker/emoji-picker';
+import { EmojiPickerComponentModule } from './emoji-picker/emoji-picker.module';
 @NgModule({
-	declarations: [SidebarComponent,
-    EmojiPickerComponent],
-	imports: [],
-	exports: [SidebarComponent,
-    EmojiPickerComponent]
+	declarations: [],
+	imports: [EmojiPickerComponentModule],
+	exports: []
 })
 export class ComponentsModule {}
