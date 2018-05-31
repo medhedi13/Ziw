@@ -44,6 +44,7 @@ import {
 } from "angular5-social-login";
 import {CouplesModalPageModule} from "../pages/couples-modal/couples-modal.module";
 import {CouplesPageModule} from "../pages/couples/couples.module";
+import {BirdSalePageModule} from "../pages/bird-sale/bird-sale.module";
 
 export function getAuthServiceConfigs() {
     let config = new AuthServiceConfig(
@@ -84,7 +85,8 @@ export function getAuthServiceConfigs() {
         PostPageModule,
         ChatModule,
         CouplesModalPageModule,
-        CouplesPageModule
+        CouplesPageModule,
+        BirdSalePageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

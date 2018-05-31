@@ -23,7 +23,9 @@ export class bird {
     description: String;
     Photo: Array<any>;
     owner: String;
-    photos:String
+    photos:String;
+    prix:String;
+    onsale:Boolean;
 }
 
 @IonicPage()

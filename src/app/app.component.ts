@@ -12,6 +12,7 @@ import {ProfilePage} from "../pages/profile/profile";
 import {PostPage} from "../pages/post/post";
 import {AboutPage} from "../pages/about/about";
 import {CouplesPage} from "../pages/couples/couples";
+import {BirdSalePage} from "../pages/bird-sale/bird-sale";
 
 @Component({
     templateUrl: 'app.html'
@@ -27,6 +28,7 @@ export class MyApp {
     profile = ProfilePage;
     aboutus = AboutPage;
     couples=CouplesPage;
+    birdOnSale=BirdSalePage;
     @ViewChild('contentRoot') content: NavController;
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

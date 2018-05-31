@@ -63,6 +63,17 @@
             <ion-input type="text" [(ngModel)]="bird.description" [ngModelOptions]="{standalone: true}">
             </ion-input>
         </ion-item>
+
+        <ion-item>
+            <ion-label>On Sale</ion-label>
+            <ion-toggle [(ngModel)]="bird.onsale" [ngModelOptions]="{standalone: true}"></ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="bird.onsale">
+            <ion-label>Prix</ion-label>
+            <ion-input type="number" [(ngModel)]="bird.prix" [ngModelOptions]="{standalone: true}">
+            </ion-input>
+        </ion-item>
         <hr>
         <button ion-button type="submit" (click)="addBird()"  > {{addBirdBtn?"Add Bird":"Edit Bird"}}</button>
         <button ion-button color="light" (click)="dismiss()"> cancel</button>

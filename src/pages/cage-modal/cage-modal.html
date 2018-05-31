@@ -28,7 +28,7 @@
         <ion-item>
             <ion-label>Couple</ion-label>
             <ion-select [(ngModel)]="cage.couple" placeholder="select couple" [ngModelOptions]="{standalone: true}">
-                <ion-option *ngFor="let couple of couples" value="{{couple._id}}">{{couple.description}}</ion-option>
+                <ion-option *ngFor="let couple of couples" value="{{couple._id}}">{{couple.name}}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
