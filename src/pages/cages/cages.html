@@ -17,12 +17,15 @@
 
 
     <ion-card class="card-background-page" *ngFor="let couple of cages">
-        <img src="https://media.gettyimages.com/photos/eastern-bluebirds-male-and-female-picture-id183412466?s=612x612"/>
-        <div class="card-title">Cage {{couple.number}}</div>
-        <div class="details">
-            <div class="">{{couple.coupleName}}</div>
-            <div class="">Eggs:{{couple.eggs}}</div>
-            <div class="">{{couple.created}}</div>
+        <div class="male" [style.backgroundImage]="'url('+couple.femaleInfo[0].photos+')'"></div>
+        <div class="female" [style.backgroundImage]="'url('+couple.maleInfo[0].photos+')'"></div>
+        <div class="info">
+            <div class="card-title">Cage {{couple.number}}</div>
+            <div class="details">
+                <div class="">{{couple.coupleName}}</div>
+                <div class="">Eggs:{{couple.eggs}}</div>
+                <div class="">{{humanDate(couple.created)}}</div>
+            </div>
         </div>
         <div style="justify-content: center;display: flex;">
 

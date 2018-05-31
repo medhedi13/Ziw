@@ -4,6 +4,7 @@ import {CageModalPage} from "../cage-modal/cage-modal";
 import {CouplesModalPage} from "../couples-modal/couples-modal";
 import {HttpClient} from "@angular/common/http";
 
+import Moment from 'moment';
 import {Storage} from "@ionic/storage";
 import {cageType} from "../cages/cages";
 /**
@@ -37,6 +38,9 @@ export class CouplesPage {
       this.getCouples();
   }
 
+    humanDate(str) {
+        return Moment(str).fromNow();
+    }
     getCouples() {
 
         class resultData {

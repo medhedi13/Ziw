@@ -8,6 +8,7 @@ import {BirdModalPage} from "../bird-modal/bird-modal";
 import {bird} from "../birds/birds";
 import {CageModalPage} from "../cage-modal/cage-modal";
 
+import Moment from 'moment';
 /**
  * Generated class for the CagesPage page.
  *
@@ -39,6 +40,9 @@ export class CagesPage {
         })();
     }
 
+    humanDate(str) {
+        return Moment(str).fromNow();
+    }
     getCouples() {
 
         class resultData {

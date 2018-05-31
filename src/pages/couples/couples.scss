@@ -1,21 +1,41 @@
 page-couples {
+
   .male,.female{
     width: 150px;
     height: 150px;
-    position: absolute;
+    position: relative;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.5;
+    display: inline-block;
   }
   .female{
-    right: 0;
+    float: right;
   }
-  .btns{
-    justify-content: center;
-    display: flex;
-    position:absolute;
-    bottom: 0;
-    left: 22px;
+  ion-card {
+    position: relative;
+  }
+  .card-background-page {
+    .info{
+      width: 100%;
+      position: absolute;
+      top: 29%;
+      padding-left: 30px;
+      background: rgba(0, 0, 0, 0.36);
+    }
+    .details{
+      width: 100%;
+      font-size: 1.0em;
+      color:#fff;
+    }
+    .card-title {
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+
   }
 }
