@@ -1,9 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HttpHeaders, HttpClient} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
 import {FileUploader, FileUploaderOptions, ParsedResponseHeaders} from "ng2-file-upload";
 import {Cloudinary} from "@cloudinary/angular-5.x";
+import {HomePage} from "../home/home";
+import {LoginPage} from "../login/login";
 
 export class userObj {
     first_name: String;
@@ -11,7 +13,7 @@ export class userObj {
     phone: String;
     email: String;
     city: String;
-    avatar:String;
+    avatar: String;
 }
 
 @IonicPage()
@@ -32,7 +34,8 @@ export class ProfilePage {
                 public navParams: NavParams,
                 private http: HttpClient,
                 private storage: Storage,
-                private cloudinary: Cloudinary) {
+                private cloudinary: Cloudinary,
+                private alertCtrl: AlertController) {
 
         this.responses = [];
         this.readyUpload();
@@ -81,10 +84,10 @@ export class ProfilePage {
         };
 
         // Update model on completion of uploading a file
-        this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>{
-            let data=JSON.parse(response);
-            this.user.avatar=data.url;
-            console.log(item,status,data);
+        this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
+            let data = JSON.parse(response);
+            this.user.avatar = data.url;
+            console.log(item, status, data);
         };
 
     }
@@ -125,4 +128,31 @@ export class ProfilePage {
 
     }
 
+    presentConfirm() {
+        let alert = this.alertCtrl.create({
+            title: 'Confirm Deletion ',
+            message: 'Do you want delete this account?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Delete',
+                    handler: () => {
+                        let self = this;
+                        this.storage.get("userid").then(function (userID) {
+                            self.http.delete("http://localhost:8081/api/users/" + userID).subscribe(function (res) {
+                                self.navCtrl.setRoot(LoginPage);
+                            });
+                        });
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
 }

@@ -1,9 +1,10 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavParams} from 'ionic-angular';
 import {Events, Content} from 'ionic-angular';
 import {ChatService, ChatMessage, UserInfo} from "../../providers/chat-service/chat-service";
 
 import {HttpClient} from "@angular/common/http";
+import {LoginPage} from "../login/login";
 
 @IonicPage()
 @Component({
@@ -19,10 +20,13 @@ export class Chat {
     toUser: UserInfo;
     editorMsg = '';
     showEmojiPicker = false;
-    exit=false;
+    exit = false;
+
     constructor(navParams: NavParams,
                 private chatService: ChatService,
-                private events: Events,) {
+                private events: Events,
+                private httpCtrl:HttpClient,
+                private alertCtrl:AlertController) {
         // Get the navParams toUserId parameter
         this.toUser = {
             id: navParams.get('toUserId'),
@@ -38,7 +42,7 @@ export class Chat {
 
     ionViewWillLeave() {
         // unsubscribe
-        this.exit=true;
+        this.exit = true;
         this.events.unsubscribe('chat:received');
     }
 
@@ -55,11 +59,10 @@ export class Chat {
 
     refresh() {
         let self = this;
-        if (!this.exit){
+        if (!this.exit) {
             setTimeout(() => {
                 try {
-                    if(!self.exit)
-                    {
+                    if (!self.exit) {
                         self.getMsg();
                         self.refresh();
                     }
@@ -98,10 +101,10 @@ export class Chat {
         return this.chatService
             .getMsgList(this.user.id, this.toUser.id)
             .subscribe(res => {
-                try{
+                try {
                     this.msgList = res;
                     this.scrollToBottom();
-                }catch (e) {
+                } catch (e) {
                     console.log(e);
                 }
             });
@@ -167,7 +170,7 @@ export class Chat {
 
     scrollToBottom() {
         setTimeout(() => {
-            if (this.content&&this.content.scrollToBottom) {
+            if (this.content && this.content.scrollToBottom) {
                 this.content.scrollToBottom();
             }
         }, 400)
@@ -182,5 +185,30 @@ export class Chat {
     private setTextareaScroll() {
         const textarea = this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
+    }
+
+    deleteMessage() {
+        let alert = this.alertCtrl.create({
+            title: 'Confirm Deletion ',
+            message: 'Do you want delete this conversation?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Delete',
+                    handler: () => {
+                        this.httpCtrl.delete("http://localhost:8081/api/messages/"+this.user.id+"/"+this.toUser.id).subscribe(function () {
+
+                        });
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
 }

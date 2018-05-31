@@ -16,8 +16,17 @@
 <ion-content padding>
     <ion-list>
         <button ion-item *ngFor="let user of users" (click)="openUserChat(user._id,user.first_name+' '+user.last_name)">
-            <ion-icon name="md-contact" item-start></ion-icon>
-            {{user.first_name}} {{user.last_name}}
+            <div style="display: flex;align-items: center; ">
+
+                <div style="background-repeat:no-repeat;
+                        background-size: cover;
+                        background-position:center;
+                        width: 32px;
+                        height: 32px;
+                        display: inline-block;
+                        border-radius:100%; " [style.background-image]="'url('+user.avatar+')'"></div>
+                <span style="height: 22px;margin-left: 10px">{{user.first_name}} {{user.last_name}}</span>
+            </div>
         </button>
     </ion-list>
 </ion-content>
