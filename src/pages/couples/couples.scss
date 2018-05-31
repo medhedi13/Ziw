@@ -1,3 +1,21 @@
 page-couples {
-
+  .male,.female{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+  }
+  .female{
+    right: 0;
+  }
+  .btns{
+    justify-content: center;
+    display: flex;
+    position:absolute;
+    bottom: 0;
+    left: 22px;
+  }
 }

@@ -6,15 +6,39 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>couples</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>couples</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
+    <ion-card class="card-background-page" *ngFor="let couple of couples"
+              style="height: 200px;
+                position: relative;">
+        <div class="male" [style.backgroundImage]="'url('+couple.femaleInfo[0].photos+')'"></div>
+        <div class="female" [style.backgroundImage]="'url('+couple.maleInfo[0].photos+')'"></div>
+        <div style="
+        position: absolute;
+        z-index: 1;
+        top: 36px;
+        left: 22px;">
+
+            <div class="card-title">name: {{couple.name}}</div>
+            <div class="details">
+                <div class="">Created:{{couple.created}}</div>
+            </div>
+        </div>
+        <div class="btns">
+
+            <button ion-button color="danger" (click)="deleteCouple(couple._id)">Delete</button>
+            <button ion-button color="light" (click)="editCouple(couple)">Edit</button>
+
+        </div>
+
+    </ion-card>
     <ion-fab right bottom>
         <button ion-fab (click)="openModal()">
             <ion-icon name="add"></ion-icon>
