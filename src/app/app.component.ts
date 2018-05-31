@@ -11,6 +11,7 @@ import {ListUserChatPage} from "../pages/list-user-chat/list-user-chat";
 import {ProfilePage} from "../pages/profile/profile";
 import {PostPage} from "../pages/post/post";
 import {AboutPage} from "../pages/about/about";
+import {CouplesPage} from "../pages/couples/couples";
 
 @Component({
     templateUrl: 'app.html'
@@ -25,6 +26,7 @@ export class MyApp {
     myhome = TabsPage;
     profile = ProfilePage;
     aboutus = AboutPage;
+    couples=CouplesPage;
     @ViewChild('contentRoot') content: NavController;
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

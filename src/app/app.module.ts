@@ -42,6 +42,8 @@ import {
     AuthServiceConfig,
     FacebookLoginProvider,
 } from "angular5-social-login";
+import {CouplesModalPageModule} from "../pages/couples-modal/couples-modal.module";
+import {CouplesPageModule} from "../pages/couples/couples.module";
 
 export function getAuthServiceConfigs() {
     let config = new AuthServiceConfig(
@@ -80,7 +82,9 @@ export function getAuthServiceConfigs() {
         ListUserChatPageModule,
         CageModalPageModule,
         PostPageModule,
-        ChatModule
+        ChatModule,
+        CouplesModalPageModule,
+        CouplesPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
