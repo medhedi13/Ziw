@@ -11,6 +11,7 @@ import {
     AuthService as AuthFb,
     FacebookLoginProvider
 } from 'angular5-social-login';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
     selector: 'page-login',
@@ -28,7 +29,8 @@ export class LoginPage {
                 private toastCtrl: ToastController,
                 private storage: Storage,
                 public events: Events,
-                private socialAuthService: AuthFb
+                private socialAuthService: AuthFb,
+                private http:HttpClient
                 // private facebook: Facebook
     ) {
     }
@@ -88,6 +90,8 @@ export class LoginPage {
     }
 
     loginFBTest(socialPlatform : string){
+
+        this.showLoader();
         let socialPlatformProvider;
         if(socialPlatform == "facebook"){
             socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
@@ -95,22 +99,28 @@ export class LoginPage {
 
         this.socialAuthService.signIn(socialPlatformProvider).then(
             (userData) => {
+
                 console.log(socialPlatform+" sign in data : " , userData);
-                // Now sign-in with userData
+                class resultData {
+                    data: {
+                        _id:String
+                    };
+                }
+
+                this.loading.dismiss();
+                let self=this;
+                this.http.post("http://localhost:8081/api/users/loginfb",JSON.stringify(userData),{
+                    headers: new HttpHeaders({
+                        'Content-Type': 'application/json'
+                    })
+                }).subscribe(function (res:resultData) {
+                    self.storage.set('userid', res.data._id);
+
+                    self.navCtrl.setRoot(HomePage);
+                    self.events.publish('userD5al', "x", Date.now());
+                })
             }
         );
     }
-    // loginfb() {
-    //     this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
-    //         this.facebook.api("http://localhost:8081/api/users/flogin", []).then(profile => {
-    //             this.login = {
-    //                 email: profile['email'],
-    //                 first_name: profile['first_name'],
-    //                 last_name: profile['last_name']
-    //             }
-    //         })
-    //     })
-    //
-    // }
 
 }
