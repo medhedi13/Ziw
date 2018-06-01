@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>cages</ion-title>
+        <ion-title>Mes Cages</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -22,15 +22,14 @@
         <div class="info">
             <div class="card-title">Cage {{couple.number}}</div>
             <div class="details">
-                <div class="">{{couple.coupleName}}</div>
-                <div class="">Eggs:{{couple.eggs}}</div>
+                <div class="">Oeufs:{{couple.eggs}}</div>
                 <div class="">{{humanDate(couple.created)}}</div>
             </div>
         </div>
         <div style="justify-content: center;display: flex;">
 
-            <button ion-button color="danger" (click)="deleteCage(couple._id)">Delete</button>
-            <button ion-button color="light" (click)="editCage(couple)">Edit</button>
+            <button ion-button color="danger" (click)="deleteCage(couple._id)">Supprimer</button>
+            <button ion-button color="light" (click)="editCage(couple)">Modifier</button>
 
         </div>
 

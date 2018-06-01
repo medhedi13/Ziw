@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>couples</ion-title>
+        <ion-title>Mes couples</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -20,15 +20,15 @@
         <div class="female" [style.backgroundImage]="'url('+couple.maleInfo[0].photos+')'"></div>
         <div class="info">
 
-            <div class="card-title">name: {{couple.name}}</div>
+            <div class="card-title">Nom: {{couple.name}}</div>
             <div class="details">
-                <div class="">Created:{{humanDate(couple.created)}}</div>
+                <div class="">Crée :{{humanDate(couple.created)}}</div>
             </div>
         </div>
         <div style="justify-content: center;display: flex;">
 
-            <button ion-button color="danger" (click)="deleteCouple(couple._id)">Delete</button>
-            <button ion-button color="light" (click)="editCouple(couple)">Edit</button>
+            <button ion-button color="danger" (click)="deleteCouple(couple._id)">Supprimer</button>
+            <button ion-button color="light" (click)="editCouple(couple)">Modifier</button>
 
         </div>
 

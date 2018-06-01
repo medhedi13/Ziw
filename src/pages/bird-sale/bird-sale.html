@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>bird-sale</ion-title>
+    <ion-title>E-Shop</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,13 +23,14 @@
             </ion-avatar>
             <h2>{{item.name}}</h2>
             <p>{{humanDate(item.birth)}}</p>
+            <p>contact:<a [href]="'tel:'+item.userInfo[0].phone">{{item.userInfo[0].phone}}</a></p>
         </ion-item>
 
         <img [src]="item.photos">
 
         <ion-card-content>
             <p style="    display: inline;">{{item.description}}</p>
-            <p style="float: right">prix:{{item.prix}}</p>
+            <p style="float: right">prix:<b>{{item.prix}} TND</b></p>
         </ion-card-content>
 
     </ion-card>

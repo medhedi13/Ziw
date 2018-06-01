@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>birdModal</ion-title>
+    <ion-title>Mes Oiseaux</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -28,7 +28,7 @@
         <div id="direct_upload" ng2FileDrop [uploader]="uploader" (fileOver)="fileOverBase($event)"
              [ngClass]="{'nv-file-over': hasBaseDropZoneOver}">
             <form>
-                <label ion-button color="light" class="upload_button" for="fileupload">Upload</label>
+                <label ion-button color="light" class="upload_button" for="fileupload" style="display: block">Heberger image</label>
                 <input type="file" id="fileupload" #fileInput ng2FileSelect [style.display]="'none'"
                        [uploader]="uploader" (change)="fileInput.value=''"
                        multiple/>
@@ -37,23 +37,23 @@
         </div>
         <hr>
         <ion-item>
-            <ion-label>Name:</ion-label>
+            <ion-label>Nom:</ion-label>
             <ion-input type="text" [(ngModel)]="bird.name" [ngModelOptions]="{standalone: true}">
             </ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Ring:</ion-label>
+            <ion-label>Bague:</ion-label>
             <ion-input type="text" [(ngModel)]="bird.ring" [ngModelOptions]="{standalone: true}">
             </ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Family:</ion-label>
-            <ion-select [(ngModel)]="bird.family" placeholder="select family" [ngModelOptions]="{standalone: true}">
+            <ion-label>Famille:</ion-label>
+            <ion-select [(ngModel)]="bird.family" placeholder="selectionnez famille" [ngModelOptions]="{standalone: true}">
                 <ion-option *ngFor="let family of familys" value="{{family._id}}">{{family.name}}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label>Birth:</ion-label>
+            <ion-label>Naissance:</ion-label>
             <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="bird.birth"
                           [ngModelOptions]="{standalone: true}"></ion-datetime>
 
@@ -65,7 +65,7 @@
         </ion-item>
 
         <ion-item>
-            <ion-label>On Sale</ion-label>
+            <ion-label>A Vendre</ion-label>
             <ion-toggle [(ngModel)]="bird.onsale" [ngModelOptions]="{standalone: true}"></ion-toggle>
         </ion-item>
 
@@ -75,8 +75,8 @@
             </ion-input>
         </ion-item>
         <hr>
-        <button ion-button type="submit" (click)="addBird()"  > {{addBirdBtn?"Add Bird":"Edit Bird"}}</button>
-        <button ion-button color="light" (click)="dismiss()"> cancel</button>
+        <button ion-button type="submit" (click)="addBird()"  > {{addBirdBtn?"Sauvgarder Oiseau":"Sauvgarder Oiseau"}}</button>
+        <button ion-button color="light" (click)="dismiss()"> Annuler</button>
     </form>
 
 </ion-content>

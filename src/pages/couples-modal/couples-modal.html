@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>couples-modal</ion-title>
+    <ion-title>Mon Couple</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,20 +16,20 @@
 <ion-content padding>
     <form>
         <ion-item>
-            <ion-label>name:</ion-label>
+            <ion-label>Nom:</ion-label>
             <ion-input type="text" [(ngModel)]="couple.name" [ngModelOptions]="{standalone: true}">
             </ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>male bird</ion-label>
-            <ion-select [(ngModel)]="couple.male" placeholder="select male" [ngModelOptions]="{standalone: true}">
+            <ion-label>Male</ion-label>
+            <ion-select [(ngModel)]="couple.male" placeholder="Selectionnez male" [ngModelOptions]="{standalone: true}">
                 <ion-option *ngFor="let bird of birds" value="{{bird._id}}" disabled="{{couple.female==bird._id}}">{{bird.name}}</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
-            <ion-label>female bird</ion-label>
-            <ion-select [(ngModel)]="couple.female" placeholder="select female" [ngModelOptions]="{standalone: true}">
+            <ion-label>Female </ion-label>
+            <ion-select [(ngModel)]="couple.female" placeholder="Selectionnez female" [ngModelOptions]="{standalone: true}">
                 <ion-option  *ngFor="let bird of birds" value="{{bird._id}}" disabled="{{couple.male==bird._id}}">{{bird.name}}</ion-option>
             </ion-select>
         </ion-item>
@@ -40,8 +40,8 @@
             </ion-input>
         </ion-item>
         <hr>
-        <button ion-button type="submit" (click)="saveCouple()"> {{addCouple?"Add Couple":"Edit Couple"}}</button>
-        <button ion-button color="light" (click)="dismiss()"> cancel</button>
+        <button ion-button type="submit" (click)="saveCouple()"> {{addCouple?"Ajouter Couple":"Modifier Couple"}}</button>
+        <button ion-button color="light" (click)="dismiss()"> Annuler</button>
     </form>
 
 </ion-content>

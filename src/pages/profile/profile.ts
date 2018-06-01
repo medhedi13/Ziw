@@ -130,18 +130,18 @@ export class ProfilePage {
 
     presentConfirm() {
         let alert = this.alertCtrl.create({
-            title: 'Confirm Deletion ',
-            message: 'Do you want delete this account?',
+            title: 'Comfirmation',
+            message: 'Voulez vous vraiment desactiver votre compte?',
             buttons: [
                 {
-                    text: 'Cancel',
+                    text: 'Annuler',
                     role: 'cancel',
                     handler: () => {
                         console.log('Cancel clicked');
                     }
                 },
                 {
-                    text: 'Delete',
+                    text: 'Supprimer',
                     handler: () => {
                         let self = this;
                         this.storage.get("userid").then(function (userID) {

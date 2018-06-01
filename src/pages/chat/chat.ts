@@ -189,18 +189,18 @@ export class Chat {
 
     deleteMessage() {
         let alert = this.alertCtrl.create({
-            title: 'Confirm Deletion ',
-            message: 'Do you want delete this conversation?',
+            title: 'Comfirmation ',
+            message: 'Voulez vous vraiment Supprimer la conversation?',
             buttons: [
                 {
-                    text: 'Cancel',
+                    text: 'Annuler',
                     role: 'cancel',
                     handler: () => {
                         console.log('Cancel clicked');
                     }
                 },
                 {
-                    text: 'Delete',
+                    text: 'Supprimer',
                     handler: () => {
                         this.httpCtrl.delete("http://localhost:8081/api/messages/"+this.user.id+"/"+this.toUser.id).subscribe(function () {
 
