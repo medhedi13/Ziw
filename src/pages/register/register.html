@@ -1,25 +1,39 @@
-<ion-content padding>
-  <h2>Register Here</h2>
+<ion-content style="background-image: url('assets/imgs/1.jpg')" padding>
+  <h2 align="center">Inscription</h2>
   <form (submit)="doSignup()">
     <ion-item>
-      <ion-label stacked>email</ion-label>
-      <ion-input [(ngModel)]="regData.email" name="email" type="text" placeholder="Your email" ></ion-input>
+      <ion-label stacked>Nom</ion-label>
+      <ion-input [(ngModel)]="regData.first_name" name="email" type="text" placeholder="Votre nom " ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input [(ngModel)]="regData.password" name="password" type="password" placeholder="Your password"></ion-input>
+      <ion-label stacked>Prenom</ion-label>
+      <ion-input [(ngModel)]="regData.last_name" name="email" type="text" placeholder="Votre prenom " ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Phone</ion-label>
+      <ion-label stacked>Email</ion-label>
+      <ion-input [(ngModel)]="regData.email" name="email" type="text" placeholder="Votre email " ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Mot de passe</ion-label>
+      <ion-input [(ngModel)]="regData.password" name="password" type="password" placeholder="Votre mot de passe"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Telephone</ion-label>
       <ion-input [(ngModel)]="regData.phone" name="password" type="text" placeholder="phone"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>City</ion-label>
-      <ion-input [(ngModel)]="regData.city" name="password" type="text" placeholder="city"></ion-input>
+      <ion-label stacked>Ville</ion-label>
+      <ion-select [(ngModel)]="regData.city" name="option">
+        <ion-option value="f">Tunis</ion-option>
+        <ion-option value="m">Mahdia</ion-option>
+        <ion-option value="ss">Sousse</ion-option>
+        <ion-option value="s">Sfax</ion-option>
+        <ion-option value="mm">Monastir</ion-option>
+      </ion-select>
     </ion-item>
 
     <button ion-button block type="submit">
-      Sign Up
+      S'inscrire
     </button>
   </form>
 </ion-content>

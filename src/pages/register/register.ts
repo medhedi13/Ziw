@@ -10,7 +10,7 @@ import { HomePage } from '../home/home';
 export class RegisterPage {
 
   loading: any;
-  regData = { email:'', password:'',phone:'',city:'' };
+  regData = { first_name:'',last_name:'', email:'', password:'',phone:'',city:'' };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {}
 

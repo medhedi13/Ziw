@@ -88,7 +88,8 @@ export class HomePage {
                     "content": self.comment,
                     "user": userid,
                     "likes": [],
-                    "photos": self.photoPost
+                    "photos": self.photoPost,
+                    "avatar":[]
                 }), {
                     headers: new HttpHeaders({
                         'Content-Type': 'application/json'
